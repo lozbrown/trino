@@ -25,6 +25,13 @@
         <artifact id="${project.groupId}:trino-server-main:${project.version}" />
     </artifactSet>
 
+    <!-- Configuration Plugins -->
+    <artifactSet to="secrets-plugin/keystore-secrets-plugin">
+        <artifact id="io.airlift:secrets-keystore-plugin:zip:${dep.packaging.version}">
+            <unpack />
+        </artifact>
+    </artifactSet>
+
     <!-- Plugins -->
     <artifactSet to="plugin/accumulo">
         <artifact id="${project.groupId}:trino-accumulo:zip:${project.version}">
@@ -176,6 +183,12 @@
         </artifact>
     </artifactSet>
 
+    <artifactSet to="plugin/kafka-event-listener">
+        <artifact id="${project.groupId}:trino-kafka-event-listener:zip:${project.version}">
+            <unpack />
+        </artifact>
+    </artifactSet>
+
     <artifactSet to="plugin/kinesis">
         <artifact id="${project.groupId}:trino-kinesis:zip:${project.version}">
             <unpack />
@@ -184,12 +197,6 @@
 
     <artifactSet to="plugin/kudu">
         <artifact id="${project.groupId}:trino-kudu:zip:${project.version}">
-            <unpack />
-        </artifact>
-    </artifactSet>
-
-    <artifactSet to="plugin/local-file">
-        <artifact id="${project.groupId}:trino-local-file:zip:${project.version}">
             <unpack />
         </artifact>
     </artifactSet>
@@ -322,6 +329,12 @@
 
     <artifactSet to="plugin/snowflake">
         <artifact id="${project.groupId}:trino-snowflake:zip:${project.version}">
+            <unpack />
+        </artifact>
+    </artifactSet>
+
+    <artifactSet to="plugin/spooling-filesystem">
+        <artifact id="${project.groupId}:trino-spooling-filesystem:zip:${project.version}">
             <unpack />
         </artifact>
     </artifactSet>

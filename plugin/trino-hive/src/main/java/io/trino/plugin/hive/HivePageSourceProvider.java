@@ -144,6 +144,7 @@ public class HivePageSourceProvider
                 hiveSplit.getStart(),
                 hiveSplit.getLength(),
                 hiveSplit.getEstimatedFileSize(),
+                hiveSplit.getFileModifiedTime(),
                 hiveSplit.getSchema(),
                 hiveTable.getCompactEffectivePredicate().intersect(
                                 dynamicFilter.getCurrentPredicate().transformKeys(HiveColumnHandle.class::cast))
@@ -175,6 +176,7 @@ public class HivePageSourceProvider
             long start,
             long length,
             long estimatedFileSize,
+            long fileModifiedTime,
             Map<String, String> schema,
             TupleDomain<HiveColumnHandle> effectivePredicate,
             TypeManager typeManager,
@@ -205,6 +207,7 @@ public class HivePageSourceProvider
                     start,
                     length,
                     estimatedFileSize,
+                    fileModifiedTime,
                     schema,
                     desiredColumns,
                     effectivePredicate,
@@ -599,7 +602,7 @@ public class HivePageSourceProvider
         }
     }
 
-    private static Optional<BucketValidator> createBucketValidator(Location path, Optional<BucketValidation> bucketValidation, OptionalInt bucketNumber, List<ColumnMapping> columnMappings)
+    static Optional<BucketValidator> createBucketValidator(Location path, Optional<BucketValidation> bucketValidation, OptionalInt bucketNumber, List<ColumnMapping> columnMappings)
     {
         return bucketValidation.flatMap(validation -> {
             Map<Integer, ColumnMapping> baseHiveColumnToBlockIndex = columnMappings.stream()
